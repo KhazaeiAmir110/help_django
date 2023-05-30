@@ -14,5 +14,6 @@ def my_task():
 
 def home(request):
     print(my_task)
+    # در واقع وقتی از delay استفاده میکنیم دیگر منتظر اون تابع نیستیم
     my_task.delay()
     return HttpResponse('hello')
