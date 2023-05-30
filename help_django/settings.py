@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'celery',
+    'django_redis',
 
     'first_celery',
 ]
