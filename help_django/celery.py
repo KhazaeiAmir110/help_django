@@ -2,6 +2,7 @@
 یک فایل در پوشه اصلی با نام celery ایجاد میکنیم
 """
 from celery import Celery
+from first_celery.tasks import *
 import os
 
 # اگر اینکار را نکنیم ما باید هردفعه export کنیم

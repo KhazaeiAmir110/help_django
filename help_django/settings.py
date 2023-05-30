@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'celery',
     'django_redis',
+    'django_celery_beat',
 
     'first_celery',
 ]
