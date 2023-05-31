@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from .tasks import plus
+from django.http import HttpResponse
 
-# Create your views here.
+
+def alaki(request):
+    for i in range(100):
+        plus.delay(1398, 1)
+    return HttpResponse('OK')

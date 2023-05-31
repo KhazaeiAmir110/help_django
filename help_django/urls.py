@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from two_celery.views import alaki
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', alaki)
 ]
