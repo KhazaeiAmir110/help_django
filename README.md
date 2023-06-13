@@ -14,3 +14,10 @@ For help with django and drf code as well as their related libraries
 کار ها را ردیف میکند.
 ولی از آنجایی که کارکردن با آنها سخت است روی آن celery را نصب میکنیم.
 که خود broker را celery مدیریت میکند.
+
+###flower
+
+```bash
+1. pipenv install flower
+2. celery --broker=amqp://guest@localhost// flower
+```
