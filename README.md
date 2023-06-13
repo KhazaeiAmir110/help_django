@@ -7,6 +7,7 @@ For help with django and drf code as well as their related libraries
 1. pipenv install celery
 2. cd name_file
 3. pip list
+4. celery  -A celery_test worker -l info
 ```
 
 برای اینکه کاربر در صفحه مورد نظر خیلی معطل نشود از broker ها استفاده میکنیم که یک صفی درست میکند و
