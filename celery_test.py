@@ -1,10 +1,1 @@
-from celery import Celery
-import time
-
-app = Celery('first', broker='amqp://guest@localhost//')
-
-
-@app.task(name='celery_test.adding')
-def add(a, b):
-    time.sleep(10)
-    return a + b
+from celery import Celeryimport timeapp = Celery('first', broker='amqp://guest@localhost//')@app.task(name='celery_test.adding')def add(a, b):    time.sleep(10)    return a + b"""1. add.delay(2,3) # delay2. add.apply_async(args=[2,3]) # apply_async# بعد از ۳ ثانیه این تسک را به بروکر بفرست3. add.apply_async((2,3),countdown=3)بعد از ۱ روز این را بفرستtomorrow = datetime.utcnow() + timedelta(days=1)4. add.apply_async((2, 2), eta=tomorrow)اگر بعد از ۱۰ ثانیه نشد دیگر نمیخواهد این را انجام دهی5. add.apply_async((10, 10), expires=10)"""
