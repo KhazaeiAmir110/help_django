@@ -1,16 +1,15 @@
 # help_django
 For help with django and drf code as well as their related libraries
-## Installation
+##To help with libraries in Django
 
-Use the package manager [pipenv](https://pipenv.pypa.io/en/latest/) to install help_django.
-
+###Celery
 ```bash
-1. mkdir name_file
+1. pipenv install celery
 2. cd name_file
-3. pipenv –python 3.8 shell
-4. python -m pip install django
-5. django-admin startproject name_project
-6. nano Pipfil
+3. pip list
 ```
 
-##To help with libraries in Django
+برای اینکه کاربر در صفحه مورد نظر خیلی معطل نشود از broker ها استفاده میکنیم که یک صفی درست میکند و
+کار ها را ردیف میکند.
+ولی از آنجایی که کارکردن با آنها سخت است روی آن celery را نصب میکنیم.
+که خود broker را celery مدیریت میکند.
