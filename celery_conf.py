@@ -1,9 +1,8 @@
-from celery.schedules import crontab
+task_default_queue = 'mongard'
 
-beat_schedule = {
-    'call_show_every_one_minute': {
-        'task': 'celery_test.show',
-        'schedule': crontab(minute='*/1'),
-        'args': ('amir',),
-    }
+task_routes = {
+    'celery_test.add': {'queue': 'first'},
+    'celery_test.sub': {'queue': 'second'},
 }
+
+# celery  -A celery_test worker -l info -Q first,second

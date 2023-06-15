@@ -1,1 +1,1 @@
-﻿from celery import Celery, signalsimport timeapp = Celery('celery_test', broker='amqp://guest@localhost//', backend='rpc://')app.config_from_object('celery_conf')@app.taskdef show(name):    print(f'Hello {name}')
+﻿from celery import Celeryapp = Celery('celery_test', broker='amqp://guest@localhost//', backend='rpc://')app.config_from_object('celery_conf')@app.taskdef add(a, b):    return a + b@app.taskdef sub(a, b):    return a - b
