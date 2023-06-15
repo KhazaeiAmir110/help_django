@@ -21,3 +21,11 @@ For help with django and drf code as well as their related libraries
 1. pipenv install flower
 2. celery --broker=amqp://guest@localhost// flower
 ```
+
+###clery_beat
+اگر بخواهیم یک تسک هر چند وقت یکبار برای ما اجرا شود باید غیر از یک broker یک beat نیز بالا بیاوریم.
+
+```bash
+1. celery  -A celery_test worker -l info
+2. celery -A celery_test beat
+```
