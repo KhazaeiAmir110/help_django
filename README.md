@@ -14,3 +14,10 @@ Use the package manager [pipenv](https://pipenv.pypa.io/en/latest/) to install h
 ```
 
 ##To help with libraries in Django
+
+## [Django REST framework](https://www.django-rest-framework.org/#installation)
+
+```bash
+1. pip install djangorestframework
+2. pip list
+```
