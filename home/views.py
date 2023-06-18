@@ -3,5 +3,6 @@ from rest_framework.response import Response
 
 
 class Home(APIView):
-    def get(self, request, name):
+    def get(self, request):
+        name = request.query_params['name']
         return Response({'name': name})
