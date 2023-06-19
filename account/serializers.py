@@ -13,6 +13,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'email': {'validators': (clean_email,)}
+        }
 
     def validate_username(self, value):
         if value == 'admin':
