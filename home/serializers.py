@@ -11,6 +11,9 @@ class PersonSerializer(serializers.Serializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = serializers.SerializerMethodField()
+    user = serializers.StringRelatedField(read_only=True)
+
+    # به جای اینکه کاربر را با شماره نشان دهد نام آن را نمایش میدهد.
 
     class Meta:
         model = Question
