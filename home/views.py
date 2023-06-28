@@ -4,7 +4,7 @@ from .models import Person, Question
 from .serializers import PersonSerializer, QuestionSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
-from .permissons import IsOwnerOrReadOnly
+from .permissons import IsOwnerOrReadOnly, IsOwnerOrReadOnlyDelete
 
 
 class Home(APIView):
@@ -49,6 +49,8 @@ class QuestionUpdateViews(APIView):
 
 
 class QuestionDeleteViews(APIView):
+    permission_classes = [IsOwnerOrReadOnlyDelete, ]
+
     def delete(self, request, pk):
         question = Question.objects.get(pk=pk)
         question.delete()
