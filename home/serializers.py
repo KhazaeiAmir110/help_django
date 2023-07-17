@@ -14,8 +14,6 @@ class QuestionSerializer(serializers.ModelSerializer):
     answers = serializers.SerializerMethodField()
     user = UserEmailRelationalFields(read_only=True)
 
-    # به جای اینکه کاربر را با شماره نشان دهد نام آن را نمایش میدهد.
-
     class Meta:
         model = Question
         fields = '__all__'
