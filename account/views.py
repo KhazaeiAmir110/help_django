@@ -32,6 +32,8 @@ class UserViewSet(viewsets.ViewSet):
     def partial_update(self, request, pk=None):
         user = get_object_or_404(self.queryset, pk=pk)
         srz_data = UserSerializer(instance=user, data=request.POST, partial=True)
+        if user != request.user:
+            return Response({'permission denied': 'error'})
         if srz_data.is_valid():
             srz_data.save()
             return Response(data=srz_data.data)
