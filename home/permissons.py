@@ -13,8 +13,8 @@ class IsOwnerOrReadOnly(BasePermission):
 class IsOwnerOrReadOnlyDelete(BasePermission):
     message = "Permission denied!!!"
 
-    # def has_permission(self, request, view):
-    #     return request.user.is_Authenticated and request.user
+    def has_permission(self, request, view):
+        return request.user.is_Authenticated and request.user
 
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
