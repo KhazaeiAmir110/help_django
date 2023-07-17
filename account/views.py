@@ -18,7 +18,6 @@ class UserRegister(APIView):
 
 class UserViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated, ]
-    # فقط کسانی که ثبت نام کره اند میتوانند تغیرات را ایجاد کنند
     queryset = User.objects.all()
 
     def list(self, request):
@@ -27,14 +26,12 @@ class UserViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         user = get_object_or_404(self.queryset, pk=pk)
-        # با توجه به متد get عمل retrive انجام میشود
         srz_data = UserSerializer(instance=user)
         return Response(data=srz_data.data)
 
     def partial_update(self, request, pk=None):
         user = get_object_or_404(self.queryset, pk=pk)
         srz_data = UserSerializer(instance=user, data=request.POST, partial=True)
-        # اگر اطلاعات فرستاده شده توسط کاربر دست بود
         if srz_data.is_valid():
             srz_data.save()
             return Response(data=srz_data.data)
@@ -42,6 +39,6 @@ class UserViewSet(viewsets.ViewSet):
 
     def destroy(self, request, pk=None):
         user = get_object_or_404(self.queryset, pk=pk)
-        user.is_active = False  # غیر فعال کردن آن کاربر
+        user.is_active = False
         user.save()
         return Response({'massage': 'user deactivated'})

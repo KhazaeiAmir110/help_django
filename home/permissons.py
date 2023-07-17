@@ -10,8 +10,6 @@ class IsOwnerOrReadOnly(BasePermission):
         return obj.user == request.user
 
 
-# بررسی کاربری که میخواهد عملیات جدیدی انجام دهد و کاربری که آن مدل یا اطلاعات را از اول ایجاد کرده است.
-
 class IsOwnerOrReadOnlyDelete(BasePermission):
     message = "Permission denied!!!"
 
