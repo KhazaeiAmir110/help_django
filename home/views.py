@@ -5,7 +5,7 @@ from django.views import View
 # Create your views here.
 
 class Home(View):
-    def get(self, request):
+    def post(self, request):
         return render(request, 'home/home.html')
 
     def options(self, request, *args, **kwargs):
@@ -13,3 +13,6 @@ class Home(View):
         response.headers['host'] = 'localhost'
         response.headers['user'] = request.user
         return response
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
+        return render(request=request, template_name='home/method_not_alloewrd.html')
