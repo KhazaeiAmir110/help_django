@@ -7,6 +7,16 @@
 <body>
 <h1>home</h1>
 <p>hello word!!!!</p>
+{% for car in cars %}
+    <p> {{ car.name }}</p>
+{% endfor %}
+<br>
+<hr>
+{% for car in cars %}
+    <h3> {{ car.owner }}</h3>
+    <hr>
+{% endfor %}
+
 
 </body>
 </html>
