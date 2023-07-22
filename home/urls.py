@@ -5,5 +5,4 @@ app_name = 'home'
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('two/', views.Two.as_view(), name='two'),
 ]
