@@ -13,6 +13,12 @@ class Home(ListView):
 
 class CarDetail(DetailView):
     template_name = 'home/detail.html'
-    model = Car
+    # model = Car
     slug_field = 'name'
     slug_url_kwarg = 'my_slug'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Car.objects.filter(name=self.kwargs['my_slug'])
+        else:
+            return Car.objects.none()
