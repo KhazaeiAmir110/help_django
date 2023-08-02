@@ -12,6 +12,7 @@ class User(AbstractBaseUser):
 
     object = UserManager()
 
+    # در مرحله ثبت نام و login به حای username  شماره تلفن میخواهیم.
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['email', 'full_name']
 
