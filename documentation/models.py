@@ -16,3 +16,6 @@ class Documentation(models.Model):
     author = models.CharField(max_length=100)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default='B')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='A')
+
+    def __str__(self):
+        return str(self.name)
