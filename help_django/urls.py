@@ -22,4 +22,5 @@ urlpatterns = [
     path('users/', include('user.urls')),
     path('users/', include('help_django.api_back_office')),
     path('documentation/', include('documentation.urls')),
+    path('reservation/', include('reservation.urls')),
 ]
