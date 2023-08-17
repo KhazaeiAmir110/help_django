@@ -5,12 +5,13 @@ from django.contrib.auth.models import Group
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ('username', 'email', 'phone_number', 'name', 'age', 'is_staff')
+    list_display = ('username', 'email', 'phone_number', 'name', 'age', 'is_staff', 'status')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal Info', {'fields': ('email', 'phone_number', 'name', 'age', 'image')}),
         ('Permissions',
-         {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+         {'fields': (
+         'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions', 'status')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
