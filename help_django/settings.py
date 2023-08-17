@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'celery',
+    'redis',
+    'django_celery_beat',
 
     'user',
     'documentation',
     'reservation',
+    'test_reserv',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +141,17 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+# beat_schedule = {
+#     'run-plus-every-minute': {
+#         'task': 'test_reserv.tasks',
+#         'schedule': 60.0,  # هر ۶۰ ثانیه (یک دقیقه)
+#     },
+# }
+
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Tehran'
