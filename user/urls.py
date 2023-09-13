@@ -10,5 +10,5 @@ backoffice_router = routers.SimpleRouter()
 backoffice_router.register(r'', UserBackOfficeViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

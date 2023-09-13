@@ -4,11 +4,13 @@ from rest_framework.exceptions import NotFound
 from user.models import User
 
 
-def create_user(self, phone_number, name, password=None, is_superuser=False):
-    if not phone_number:
-        raise NotFound(_('Input phone number, please.'))
+def create_user(**kwargs):
+    return User.objects.create(**kwargs)
 
-    user = User(phone_number=phone_number, name=name, is_superuser=is_superuser)
-    user.set_password(password)
-    user.save()
+
+def get_user(raise_exception=False, **kwargs):
+    user = User.objects.filter(**kwargs).first()
+    if not user and raise_exception:
+        raise NotFound('')
+
     return user

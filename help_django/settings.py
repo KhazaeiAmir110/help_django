@@ -40,13 +40,16 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'celery',
-    'redis',
+    'redis_app',
     'django_celery_beat',
+    'rest_framework_simplejwt',
+    'pyotp',
 
     'user',
     'documentation',
     'reservation',
     'test_reserv',
+    'test_user'
 ]
 
 MIDDLEWARE = [
@@ -137,7 +140,8 @@ AUTH_USER_MODEL = 'user.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
@@ -149,9 +153,14 @@ REST_FRAMEWORK = {
 #     },
 # }
 
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_URL = 'redis_app://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis_app://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Tehran'
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+
+AUTHENTICATION_BACKENDS = ["core.backends.CustomModelBackend"]

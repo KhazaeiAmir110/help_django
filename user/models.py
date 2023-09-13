@@ -8,7 +8,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=50)
     age = models.IntegerField(null=True)
     image = models.ImageField(null=True, blank=True, upload_to='user_images')
-    email = models.EmailField(unique=True)
+    password = models.CharField(_("password"), max_length=128, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
