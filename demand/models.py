@@ -1,6 +1,6 @@
 from django.db import models
 from category.models import Category
-
+from users.models import User
 
 # Create your models here.
 class Demand(models.Model):
@@ -19,6 +19,7 @@ class Demand(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     image = models.ForeignKey('Image', on_delete=models.PROTECT, related_name='image')
     video = models.ForeignKey('Video', on_delete=models.PROTECT, related_name='video')
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user')
 
 
 class Image(models.Model):
