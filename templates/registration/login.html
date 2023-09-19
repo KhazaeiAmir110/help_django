@@ -1,0 +1,47 @@
+{% extends 'demand/base.html' %}
+{% load static %}
+
+{% block main %}
+    <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>مطالبه گری</h1>
+                        <span class="subheading"><a>اول وارد شوید</a> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Login Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">ورود</h3>
+                            <form method="post" action="{% url 'users:login' %}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">نام کاربری</label>
+                                    <input type="text" class="form-control" id="username"
+                                           name="username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">رمز عبور</label>
+                                    <input type="password" class="form-control" id="password"
+                                           name="password" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">ورود</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

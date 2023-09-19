@@ -1,0 +1,100 @@
+{% extends 'demand/base.html' %}
+{% load static %}
+
+{% block main %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>پروفایل شما</h1>
+                        <span class="subheading">صفحه کاربری </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- User Profile Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">پروفایل کاربر</h3>
+                            <div class="text-center">
+                                <h4>نام کاربری: {{ user.username }}</h4>
+                                <h4>ایمیل: {{ user.email }}</h4>
+                                <h4>نام :{{ user.first_name }}</h4>
+                                <h4>نام خانوادگی:{{ user.last_name }}</h4>
+                                <h4>آخرین ورود{{ user.last_login }}</h4>
+                                <!-- دیگر اطلاعات کاربر را اینجا قرار دهید -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% for demand in demands %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{% url 'demand:post' demand.slug %}">
+                            <h2 class="post-title">{{ demand.title }}</h2>
+                            <h3 class="post-subtitle">{{ demand.description }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            {{ demand.created }}
+                            <a href="#!">{{ demand.category }}</a>
+                        </p>
+                        <div>
+                            {% for cat in demand.category.all %}
+                                <a href="#">#{{ cat.title }}</a>
+                            {% endfor %}
+                        </div>
+                        <img src="{{ demand.image.file.url }}" alt="تصویر"
+                             style="width: 100%; height: 300px">
+                        <video controls width="500" height="500">
+                            <source src="{{ demand.video.file.url }}" type="video/mp4">
+                            مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                        </video>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4"/>
+                {% endfor %}
+                <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4"><a
+                        class="btn btn-primary text-uppercase"
+                        href="#!">Older Posts →</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- User Profile Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">پروفایل کاربر</h3>
+                            <div class="text-center">
+                                <h4>نام کاربری: {{ user.username }}</h4>
+                                <h4>ایمیل: {{ user.email }}</h4>
+                                <!-- دیگر اطلاعات کاربر را اینجا قرار دهید -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
