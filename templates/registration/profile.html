@@ -54,6 +54,8 @@
                         <p class="post-meta">
                             {{ demand.created }}
                             <a href="#!">{{ demand.category }}</a>
+                            <a class="btn btn-primary"
+                               href="{% url 'demand:edit-post' demand.slug %}">edit</a>
                         </p>
                         <div>
                             {% for cat in demand.category.all %}
