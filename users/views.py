@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from demand.models import Demand, Image, Video
-from .forms import DemandForm
+from .forms import DemandForm, UserProfileEditForm
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -51,3 +51,18 @@ class CreateDemandView(View):
 
         context = {'form': form}
         return render(request, 'registration/create_demand.html', context)
+
+
+class EditProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'registration/edit_profile.html'
+
+    def get(self, request):
+        form = UserProfileEditForm(instance=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = UserProfileEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('users:profile')
+        return render(request, self.template_name, {'form': form})

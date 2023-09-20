@@ -2,6 +2,7 @@ from django import forms
 from django.forms.widgets import ClearableFileInput
 from demand.models import Demand
 from multiupload.fields import MultiFileField
+from .models import User
 
 
 class DemandForm(forms.ModelForm):
@@ -26,3 +27,9 @@ class DemandFormm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     video = MultiFileField()
     image = MultiFileField()
+
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']

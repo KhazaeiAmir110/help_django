@@ -30,7 +30,8 @@
                                 <h4>نام :{{ user.first_name }}</h4>
                                 <h4>نام خانوادگی:{{ user.last_name }}</h4>
                                 <h4>آخرین ورود{{ user.last_login }}</h4>
-                                <!-- دیگر اطلاعات کاربر را اینجا قرار دهید -->
+                                <a href="{% url 'users:edit_profile' %}">edit<a/>
+                                    <!-- دیگر اطلاعات کاربر را اینجا قرار دهید -->
                             </div>
                         </div>
                     </div>
