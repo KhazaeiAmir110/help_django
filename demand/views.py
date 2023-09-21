@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Demand, Image
+from .models import Demand, Image, Category
 from django.views.generic import ListView, DetailView, TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostEditForm
@@ -30,15 +30,24 @@ class Post(DetailView):
         return super().get_queryset().filter(slug=self.kwargs['slug'])
 
 
-class Form(TemplateView):
-    template_name = 'demand/index.html'
+class Category(DetailView):
+    template_name = 'demand/category.html'
     context_object_name = 'demands'
-    model = Demand
+    model = Category
 
     def get_queryset(self):
-        return super().get_queryset().filter(category=self.kwargs['category'])
+        category = self.kwargs['slug']
+        return super().get_queryset().filter(slug=category)
 
 
+# class CategoryHome(DetailView):
+#     template_name = 'demand/index.html'
+#     context_object_name = 'category'
+#     model = Category
+#
+#     def get_queryset(self):
+#         category = self.kwargs['slug']
+#         return super().get_queryset().filter(slug=category)
 # class EditPostView(LoginRequiredMixin, TemplateView):
 #     template_name = 'demand/edit_post.html'
 #
