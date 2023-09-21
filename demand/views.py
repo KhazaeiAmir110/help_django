@@ -40,6 +40,16 @@ class Category(DetailView):
         return super().get_queryset().filter(slug=category)
 
 
+class CategoryIndex(DetailView):
+    template_name = 'demand/index.html'
+    context_object_name = 'cat'
+    model = Category
+
+    def get_queryset(self):
+        category = self.kwargs['slug']
+        return super().get_queryset().filter(slug=category)
+
+
 # class CategoryHome(DetailView):
 #     template_name = 'demand/index.html'
 #     context_object_name = 'category'

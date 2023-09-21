@@ -28,7 +28,7 @@
                         </a>
                         <p class="post-meta">
                             {{ demand.created }}
-                            <a href="#!">{{ demand.category }}</a>
+                            <a href="{% url 'demand:category' demand.category.slug %}">{{ demand.category }}</a>
                         </p>
                         <div>
                             {% for cat in demand.category.all %}
