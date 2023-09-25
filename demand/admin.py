@@ -13,6 +13,9 @@ class DemandAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
     ordering = ['status']
 
+    # def category_to_str(self, obj):
+    #     return ", ".join([category.title for category in obj.category.all()])
+
 
 class ImagedAdmin(admin.ModelAdmin):
     list_display = (
