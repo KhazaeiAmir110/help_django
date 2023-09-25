@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+        <link href="{% static 'css/rtl.css' %}" rel="stylesheet"/>
     </header>
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
@@ -33,7 +34,7 @@
                             <br>
                         </p>
                         <hr>
-                        <div>
+                        <div class="category-title">
                             {% for cat in demand.category.all %}
                                 <br>
                                 <a href="#">#{{ cat.title }}#</a>
@@ -45,7 +46,7 @@
                 <!-- Pager-->
                 <div class="d-flex justify-content-end mb-4"><a
                         class="btn btn-primary text-uppercase"
-                        href="#!">Older Posts →</a></div>
+                        href="#!">پست های قدیمی →</a></div>
             </div>
         </div>
     </div>
