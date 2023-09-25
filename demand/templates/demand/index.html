@@ -28,15 +28,18 @@
                         </a>
                         <p class="post-meta">
                             {{ demand.created }}
+                            <br>
                             <a href="{% url 'demand:category' demand.category.slug %}">{{ demand.category }}</a>
+                            <br>
                         </p>
+                        <hr>
                         <div>
                             {% for cat in demand.category.all %}
-                                <a href="#">#{{ cat.title }}</a>
+                                <br>
+                                <a href="#">#{{ cat.title }}#</a>
                             {% endfor %}
                         </div>
                     </div>
-                    <!-- Divider-->
                     <hr class="my-4"/>
                 {% endfor %}
                 <!-- Pager-->

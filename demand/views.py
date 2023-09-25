@@ -8,17 +8,22 @@ from .forms import PostEditForm
 # Create your views here.
 
 
-class Home(ListView):
+class Home(TemplateView):
     template_name = 'demand/index.html'
-    context_object_name = 'demands'
-    queryset = Demand.objects.filter(status='p')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['demands'] = Demand.objects.filter(status='p')
+        context['category'] = Category.objects.all()
+        return context
 
 
-# def post(request, slug):
+# def home(request):
 #     context = {
-#         'demand': Demand.objects.get(slug=slug)
+#         'demand': Demand.objects.filter(status='p'),
+#         'category': Category.objects.all()
 #     }
-#     return render(request, 'demand/post.html', context=context)
+#     return render(request, 'demand/index.html', context=context)
 
 
 class Post(DetailView):
@@ -30,7 +35,7 @@ class Post(DetailView):
         return super().get_queryset().filter(slug=self.kwargs['slug'])
 
 
-class Category(DetailView):
+class CategoryPageView(DetailView):
     template_name = 'demand/category.html'
     context_object_name = 'demands'
     model = Category
@@ -42,7 +47,7 @@ class Category(DetailView):
 
 class CategoryIndex(DetailView):
     template_name = 'demand/index.html'
-    context_object_name = 'cat'
+    context_object_name = 'category'
     model = Category
 
     def get_queryset(self):
