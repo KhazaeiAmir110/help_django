@@ -8,8 +8,11 @@ from .forms import PostEditForm
 
 class Home(TemplateView):
     template_name = 'demand/index.html'
-    context_object_name = 'demands'
-    queryset = Demand.objects.filter(status='p')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['demands'] = Demand.objects.filter(status='p')
+        return context
 
 
 class Post(DetailView):
