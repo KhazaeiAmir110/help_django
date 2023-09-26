@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, View, ListView
+from django.views.generic import TemplateView, View, ListView, CreateView
 from demand.models import Demand, Image, Video
 from .forms import DemandForm, UserProfileEditForm
 
@@ -78,3 +78,12 @@ class ProfileHomeView(ListView):
             return Demand.objects.all()
         else:
             return Demand.objects.filter(user__username=self.request.user.username)
+
+
+# ----------------------------------------------------------
+class DemandCreate(LoginRequiredMixin, CreateView):
+    model = Demand
+    fields = ['title', 'slug', 'category', 'description', 'short_description',
+              'image', 'video', 'user',
+              ]
+    template_name = 'registration/demand-create-update.html'

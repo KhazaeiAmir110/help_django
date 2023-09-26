@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import ProfileView, CreateDemandView, EditProfileView, ProfileHomeView
+from .views import ProfileView, CreateDemandView, EditProfileView, ProfileHomeView, DemandCreate
 
 app_name = 'users'
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('edit_profile/', EditProfileView.as_view(), name='edit_profile'),
     #     ____________________________________________________________________
     path('home/', ProfileHomeView.as_view(), name='home-profile'),
+    path('demand/create/', DemandCreate.as_view(), name='demand-create')
 
 ]
