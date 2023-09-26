@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from demand.models import Demand, Image, Video
 from .forms import DemandForm, UserProfileEditForm
 
@@ -68,5 +68,8 @@ class EditProfileView(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
 
-class ProfileHomeView(TemplateView):
+class ProfileHomeView(ListView):
     template_name = 'registration/home.html'
+    context_object_name = 'demands'
+    model = Demand
+    queryset = Demand.objects.all()

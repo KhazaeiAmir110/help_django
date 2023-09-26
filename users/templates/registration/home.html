@@ -1,2 +1,56 @@
 {% extends 'registration/base.html' %}
 
+{% block title %}
+    title
+{% endblock %}
+
+{% block main %}
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>title</th>
+                            <th>slug</th>
+                            <th>short_description</th>
+                            <th>category</th>
+                            <th>image</th>
+                            <th>user_name</th>
+                            <th>status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for demand in demands %}
+                            <tr>
+                                <td>{{ demand.title }}</td>
+                                <td>{{ demand.slug }}</td>
+                                <td>{{ demand.short_description }}</td>
+                                {#                                <td><span class="tag tag-success">Approved</span></td>#}
+                                <td>{{ demand.category }}</td>
+                                <td><img src="{{ demand.image.file.url }}" width="120px"></td>
+                                <td>{{ demand.user.get_full_name }}</td>
+                                <td>
+                                    {% if demand.status == 'p' %}
+                                        <span class="badge badge-success">منتشرشده</span>
+                                        <a target="_blank" class="badge badge-primary"
+                                           href="{% url 'demand:post' demand.slug %}">نمایش در
+                                            سایت</a>
+                                    {% else %}
+                                        <span class="badge badge-danger">پیش نویس</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
