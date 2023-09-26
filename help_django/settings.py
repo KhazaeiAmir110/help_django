@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'multiupload',
+    'crispy_forms',
+    'bootstrap4',
 
     'users',
     'category',
@@ -132,3 +134,5 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = "users:home-profile"
 LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = "login"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
