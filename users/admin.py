@@ -1,6 +1,13 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin
 from .models import User
 
-# Register your models here.
-admin.site.register(User)
+UserAdmin.fieldsets[2][1]['fields'] = (
+    'is_active',
+    'is_staff',
+    'is_superuser',
+    'groups',
+    'user_permissions'
+)
+
+admin.site.register(User, UserAdmin)
