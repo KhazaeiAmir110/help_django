@@ -12,7 +12,7 @@
         {#                </li>#}
         {% for cat in category %}
             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-                                    href="{% url 'demand:home' %}">{{ cat.title }}</a>
+                                    href="{% url 'demand:category' cat.slug %}">{{ cat.title }}</a>
         {% endfor %}
     </ul>
 </div>
