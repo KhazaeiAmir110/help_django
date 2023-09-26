@@ -66,3 +66,7 @@ class EditProfileView(LoginRequiredMixin, TemplateView):
             form.save()
             return redirect('users:profile')
         return render(request, self.template_name, {'form': form})
+
+
+class ProfileHomeView(TemplateView):
+    template_name = 'registration/home.html'
