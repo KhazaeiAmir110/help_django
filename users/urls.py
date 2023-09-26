@@ -9,6 +9,6 @@ urlpatterns = [
     path('create/', CreateDemandView.as_view(), name='create'),
     path('edit_profile/', EditProfileView.as_view(), name='edit_profile'),
     #     ____________________________________________________________________
-    path('new/', ProfileHomeView.as_view(), name='new-profile'),
+    path('home/', ProfileHomeView.as_view(), name='home-profile'),
 
 ]

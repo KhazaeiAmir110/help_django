@@ -72,4 +72,9 @@ class ProfileHomeView(ListView):
     template_name = 'registration/home.html'
     context_object_name = 'demands'
     model = Demand
-    queryset = Demand.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Demand.objects.all()
+        else:
+            return Demand.objects.filter(user__username=self.request.user.username)

@@ -1,47 +1,121 @@
-{% extends 'demand/base.html' %}
 {% load static %}
+{#{% load widget_tweaks %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ورود به سایت</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png"
+          href="{% static 'registration/login/images/icons/favicon.ico' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'registration/login/vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/rtl.css' %}">
+    <!--===============================================================================================-->
+</head>
+<body>
 
-{% block main %}
-    <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>مطالبه گری</h1>
-                        <span class="subheading"><a>اول وارد شوید</a> </span>
-                    </div>
-                </div>
-            </div>
+<div class="limiter">
+    {% if form.non_field_errors %}
+        <div class="myerrors">
+            {{ form.non_field_errors.as_text }}
         </div>
-    </header>
-    <!-- Login Form -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title text-center">ورود</h3>
-                            <form method="post" action="{% url 'users:login' %}">
-                                {% csrf_token %}
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">نام کاربری</label>
-                                    <input type="text" class="form-control" id="username"
-                                           name="username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">رمز عبور</label>
-                                    <input type="password" class="form-control" id="password"
-                                           name="password" required>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">ورود</button>
-                                </div>
-                            </form>
+    {% endif %}
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="post">{% csrf_token %}
+                <span class="login100-form-title p-b-26 myfont">
+						ورود به سایت
+					</span>
+                <span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                    {{ form.username }}
+                    <span class="focus-input100" data-placeholder="نام کاربری"></span>
+                    {% if form.username.errors %}
+                        <div class="myerrors">
+                            {{ form.username.errors }}
                         </div>
+                    {% endif %}
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+                    {{ form.password }}
+                    <span class="focus-input100" data-placeholder="گذرواژه"></span>
+                    {% if form.password.errors %}
+                        <div class="myerrors">
+                            {{ form.password.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {#					<a class="myfont" href="{% url 'password_reset' %}">فراموشی گذرواژه</a>#}
+                <br>
+                {#					<a class="myfont" href="{% url 'register' %}">ثبت نام کنید</a>#}
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn myfont">
+                            ورود
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </section>
-{% endblock %}
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'registration/login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'registration/login/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'registration/login/js/main.js' %}"></script>
+
+</body>
+</html>
