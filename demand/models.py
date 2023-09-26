@@ -1,6 +1,8 @@
 from django.db import models
 from category.models import Category
 from users.models import User
+from django.urls import reverse
+
 
 # Create your models here.
 class Demand(models.Model):
@@ -20,6 +22,9 @@ class Demand(models.Model):
     image = models.ForeignKey('Image', on_delete=models.PROTECT, related_name='image')
     video = models.ForeignKey('Video', on_delete=models.PROTECT, related_name='video')
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user')
+
+    def get_absolute_url(self):
+        return reverse('users:home-profile')
 
 
 class Image(models.Model):
