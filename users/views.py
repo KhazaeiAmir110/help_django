@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import FieldsMixin, FormValidMixin, UserAccessMixin
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, View, ListView, CreateView, UpdateView
+from django.views.generic import (
+    TemplateView, View, ListView, CreateView, UpdateView, DeleteView)
+from django.urls import reverse_lazy
 from demand.models import Demand, Image, Video
 from .forms import DemandForm, UserProfileEditForm
 
@@ -91,3 +93,9 @@ class DemandUpdateView(LoginRequiredMixin, FormValidMixin, FieldsMixin, UserAcce
                        UpdateView):
     model = Demand
     template_name = 'registration/demand-create-update.html'
+
+
+class DemandDeleteView(DeleteView):
+    model = Demand
+    success_url = reverse_lazy('users:home-profile')
+    template_name = 'registration/delete_demand.html'

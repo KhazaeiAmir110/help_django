@@ -46,7 +46,13 @@
                                                href="{% url 'demand:post' demand.slug %}">نمایش در
                                                 سایت</a>
                                         {% else %}
-                                            <span class="badge badge-danger">پیش نویس</span>
+                                            <a target="_blank" class="badge badge-warning"
+                                               href="{% url 'users:demand-update' demand.pk %}">پیش
+                                                نویس</a>
+                                        {% endif %}
+                                        {% if user.is_superuser %}
+                                            <a target="_blank" class="badge badge-danger"
+                                               href="{% url 'users:demand-delete' demand.pk %}">حذف</a>
                                         {% endif %}
                                     </td>
                                 </tr>
