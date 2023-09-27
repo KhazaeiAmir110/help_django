@@ -51,3 +51,15 @@ class UserAccessMixin():
             return super().dispatch(request, *args, **kwargs)
         else:
             return Http404("Error")
+
+
+class SuperUserAccessMixin():
+    """
+    Access restricted to superuser.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return Http404("You are not authorized to access this page.")
