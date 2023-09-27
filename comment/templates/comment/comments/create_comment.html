@@ -22,7 +22,7 @@
                         type="submit" name="form_type"
                         value="{% if comment %}child{% else %}parent{% endif %}"
                         data-email-required="{% if user.is_anonymous and is_anonymous_allowed %}true{% endif %}">
-                    {% if comment %}{% trans "Reply" %}{% else %}{% trans "Comment" %}{% endif %}
+                    {% if comment %}{% trans "پاسخ" %}{% else %}{% trans "ارسال" %}{% endif %}
                 </button>
             </div>
         </div>
@@ -34,17 +34,17 @@
             {% if is_anonymous_allowed %}
                 <p class="text-muted{% if comment %} h7{% endif %}">
                     {% trans "Comment Anonymously or" %}
-                    <a class="text-success" href="{{ login_url }}?next={{ request.path }}">
-                        <em>{% trans "Login" %}</em>
+                    <a class="text-success" href="{% url 'users:login' %}">
+                        <em>{% trans "ورود" %}</em>
                     </a>
                     {% trans "to keep your conversations intact" %}
                 </p>
             {% else %}
                 <p class="text-muted {% if comment %}h7{% endif %}">
-                    <a class="text-success" href="{{ login_url }}?next={{ request.path }}">
-                        <em>{% trans "Login" %}</em>
+                    <a class="text-success" href="{% url 'users:login' %}">
+                        <em>{% trans "ورود" %}</em>
                     </a>
-                    {% trans "to join the discussion" %}
+                    {% trans "ارسال دیدگاه" %}
                 </p>
             {% endif %}
             {% if oauth %}

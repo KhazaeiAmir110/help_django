@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <div id="{{ comment.urlhash }}"
-     class="js-updated-comment {% if comment.has_flagged_state %}flagged-comment {% endif %}{% block content_wrapper_cls %}{% if has_valid_profile %}col-9 col-md-10{% else %}co-11 mx-3{% endif %}{% endblock content_wrapper_cls %}">
+     class="media-comment-bubble media-comment-bubble left-top js-updated-comment {% if comment.has_flagged_state %}flagged-comment {% endif %}{% block content_wrapper_cls %}{% if has_valid_profile %}col-9 col-md-10{% else %}co-11 mx-3{% endif %}{% endblock content_wrapper_cls %}">
     {% block comment_content %}
         {% if render_markdown %}
             {% render_content comment markdown=True %}
@@ -18,17 +18,18 @@
                     class="{% block username_cls %}{% endblock username_cls %}"
                     {% if profile_url %}href="{{ profile_url }}"{% endif %}
                     title="
+
                             {% if comment.user %}{% blocktrans %}view {{ username }} profile{% endblocktrans %}{% else %}{% trans 'comment by anonymous user' %}{% endif %}"
             >
-                {{ username }}
+                {{ comment.user.get_full_name }}
             </{% if comment.user %}a{% else %}span{% endif %}> |
             {% if comment.is_edited %}
                 <span class="font-italic"
-                      title="{% trans 'Edited' %}">{% blocktrans with edited_time=comment.edited|timesince %}
+                      title="{% trans 'ادیت' %}">{% blocktrans with edited_time=comment.edited|timesince %}
                     Edited: {{ edited_time }} ago{% endblocktrans %}</span>
             {% else %}
                 <span class="font-italic"
-                      title="{% trans 'Posted' %}">{% blocktrans with posted_time=comment.posted|timesince %}
+                      title="{% trans 'پست کردن' %}">{% blocktrans with posted_time=comment.posted|timesince %}
                     {{ posted_time }} ago{% endblocktrans %}</span>
             {% endif %}
             {% can_delete_comment comment user as can_delete %}
@@ -53,8 +54,8 @@
                 <span class="js-reply-number {% block reply_count_cls %}text-dark{% endblock reply_count_cls %}">{{ reply_count }}</span>
                 <a class="js-reply-link {% block reply_link_cls %}btn btn-link ml-1{% endblock reply_link_cls %}"
                    href="#">
-                    {% blocktrans count reply_count=reply_count %} Reply{% plural %}
-                        Replies{% endblocktrans %}
+                    {% blocktrans count reply_count=reply_count %} پاسخ{% plural %}
+                        پاسخ{% endblocktrans %}
                 </a>
                 {% if comment.user == user and is_subscription_allowed %}
                     <div class="{% block follow_icon_wrapper_cls %}d-inline ml-3{% endblock follow_icon_wrapper_cls %}">
