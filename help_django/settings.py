@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'multiupload',
     'crispy_forms',
     'bootstrap4',
+    'comment',
 
     'users',
     'category',
