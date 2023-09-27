@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ demand.title }}</td>
                                     <td>{{ demand.slug }}</td>
-                                    <td>{{ demand.short_description }}</td>
+                                    <td>{{ demand.short_description|striptags|truncatewords:"10" }}</td>
                                     {#                                <td><span class="tag tag-success">Approved</span></td>#}
                                     <td>{{ demand.category }}</td>
                                     <td><img src="{{ demand.image.file.url }}" width="120px"></td>

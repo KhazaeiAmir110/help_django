@@ -19,3 +19,19 @@ class FieldsMixin():
         else:
             return Http404
         return super().dispatch(request, *args, **kwargs)
+
+
+"""
+اضافه کردن پیش فرض user , status برای کاربران عادی
+"""
+
+
+class FormValidMixin():
+    def form_valid(self, form):
+        if self.request.user.is_superuser:
+            form.save()
+        else:
+            self.obj = form.save(commit=False)
+            self.obj.user = self.request.user
+            self.obj.status = 'd'
+        return super().form_valid(form)
