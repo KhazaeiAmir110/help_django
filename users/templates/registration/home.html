@@ -50,6 +50,9 @@
                                             <a target="_blank" class="badge badge-warning"
                                                href="{% url 'users:demand-update' demand.pk %}">پیش
                                                 نویس</a>
+                                            <a target="_blank" class="badge badge-primary"
+                                               href="{% url 'users:preview' demand.pk %}">پیش نمایش
+                                                در سایت</a>
                                         {% endif %}
                                         {% if user.is_superuser %}
                                             <a target="_blank" class="badge badge-danger"

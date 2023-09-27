@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import (ProfileView, CreateDemandView, EditProfileView,
                     ProfileHomeView, DemandCreate, DemandUpdateView,
-                    DemandDeleteView)
+                    DemandDeleteView, DemandPreview)
 
 app_name = 'users'
 
@@ -15,4 +15,5 @@ urlpatterns = [
     path('demand/create/', DemandCreate.as_view(), name='demand-create'),
     path('demand/update/<int:pk>/', DemandUpdateView.as_view(), name='demand-update'),
     path('demand/delete/<int:pk>/', DemandDeleteView.as_view(), name='demand-delete'),
+    path('preview/<int:pk>', DemandPreview.as_view(), name="preview"),
 ]

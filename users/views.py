@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import (FieldsMixin, FormValidMixin, UserAccessMixin,
                      SuperUserAccessMixin)
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
-    TemplateView, View, ListView, CreateView, UpdateView, DeleteView)
+    TemplateView, View, ListView, CreateView, UpdateView,
+    DeleteView, DetailView)
 from django.urls import reverse_lazy
 from demand.models import Demand, Image, Video
 from .forms import DemandForm, UserProfileEditForm
@@ -100,3 +101,11 @@ class DemandDeleteView(SuperUserAccessMixin, DeleteView):
     model = Demand
     success_url = reverse_lazy('users:home-profile')
     template_name = 'registration/demands-delete.html'
+
+
+class DemandPreview(UserAccessMixin, DetailView):
+    template_name = 'demand/post.html'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Demand, pk=pk)
