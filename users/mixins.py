@@ -1,4 +1,6 @@
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+from demand.models import Demand
 
 """
 برای نمایش فیلد های اضافه کردن یک مطالبه 
@@ -35,3 +37,17 @@ class FormValidMixin():
             self.obj.user = self.request.user
             self.obj.status = 'd'
         return super().form_valid(form)
+
+
+class UserAccessMixin():
+    """
+    Restrictions for editing demand
+    """
+
+    def dispatch(self, request, pk, *args, **kwargs):
+        demand = get_object_or_404(Demand, pk=pk)
+        if demand.user == request.user and demand.status == "d" or \
+                request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return Http404("Error")

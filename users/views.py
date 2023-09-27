@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import FieldsMixin, FormValidMixin
+from .mixins import FieldsMixin, FormValidMixin, UserAccessMixin
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View, ListView, CreateView, UpdateView
 from demand.models import Demand, Image, Video
@@ -87,6 +87,7 @@ class DemandCreate(LoginRequiredMixin, FormValidMixin, FieldsMixin, CreateView):
     template_name = 'registration/demand-create-update.html'
 
 
-class DemandUpdateView(LoginRequiredMixin, FormValidMixin, FieldsMixin, UpdateView):
+class DemandUpdateView(LoginRequiredMixin, FormValidMixin, FieldsMixin, UserAccessMixin,
+                       UpdateView):
     model = Demand
     template_name = 'registration/demand-create-update.html'
