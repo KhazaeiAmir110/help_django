@@ -1,0 +1,30 @@
+{% extends 'registration/base.html' %}
+<style>h1 {
+    font-family: 'Sahel';
+}</style>
+{% block title %}{% block title-meta %}
+    حذف مقاله
+{% endblock %}{% endblock %}
+
+{% block main %}
+    <div class="col-md-8 text-center mx-auto">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h1 class="card-title mb-1 float-left" style="font-size: 30px">حذف مقاله</h1>
+            </div>
+        </div>
+
+        <div class="card-body py-4">
+            <form method="post">{% csrf_token %}
+                <p class="py-4" style="font-size: 25px">آیا از حذف مقاله
+                    «{{ object.title }}»
+                    از کاربر
+                    «{{ object.user.get_full_name }}»
+                    مطمئن هستید؟
+                </p>
+                {{ form }}
+                <input type="submit" value="حذف" class="btn btn-danger" style="font-size: 20px">
+            </form>
+        </div>
+    </div>
+{% endblock %}

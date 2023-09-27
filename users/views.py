@@ -99,4 +99,4 @@ class DemandUpdateView(LoginRequiredMixin, FormValidMixin, FieldsMixin, UserAcce
 class DemandDeleteView(SuperUserAccessMixin, DeleteView):
     model = Demand
     success_url = reverse_lazy('users:home-profile')
-    template_name = 'registration/delete_demand.html'
+    template_name = 'registration/demands-delete.html'
