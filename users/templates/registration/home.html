@@ -26,7 +26,13 @@
                             <tbody>
                             {% for demand in demands %}
                                 <tr>
-                                    <td>{{ demand.title }}</td>
+                                    {% if demand.status == 'd' %}
+                                        <td>
+                                            <a href="{% url 'users:demand-update' demand.pk %}">{{ demand.title }}</a>
+                                        </td>
+                                    {% else %}
+                                        <td>{{ demand.title }}</td>
+                                    {% endif %}
                                     <td>{{ demand.slug }}</td>
                                     <td>{{ demand.short_description|striptags|truncatewords:"10" }}</td>
                                     {#                                <td><span class="tag tag-success">Approved</span></td>#}
