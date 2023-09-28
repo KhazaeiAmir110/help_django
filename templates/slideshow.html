@@ -70,6 +70,7 @@
                 {% for slide in slides %}
                     <div class="item">
                         <h4><img src="{{ slide.post.image.url }}" alt="{{ slide.post.title }}"></h4>
+                        <p>{{ slide.post.title }}</p>
                     </div>
                 {% endfor %}
 
