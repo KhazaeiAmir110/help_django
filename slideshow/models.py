@@ -8,7 +8,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(default=False)
+    status = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-publish']
