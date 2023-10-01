@@ -16,13 +16,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development.txt settings - unsuitable for production.txt
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production.txt secret!
 SECRET_KEY = 'django-insecure-u5e#envk9tpvvl7z^vr-&z6nt5nt=pvkj3x1=izxt*^)yqe6-+'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production.txt!
 DEBUG = True
 
 ALLOWED_HOSTS = []
