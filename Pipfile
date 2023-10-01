@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 django = "*"
+sentry-sdk = { extras = ["django"], version = "*" }
 
 [dev-packages]
 
