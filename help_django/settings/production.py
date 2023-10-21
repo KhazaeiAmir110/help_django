@@ -67,7 +67,7 @@ ROOT_URLCONF = 'help_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'help_django/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
