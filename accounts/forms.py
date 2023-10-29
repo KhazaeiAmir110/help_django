@@ -4,13 +4,13 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
-class UserCreationForm(forms.Form):
+class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='confirm password', widget=forms.PasswordInput)
 
     class Meta:
         module = User
-        fields = ('email', 'phon_number', 'full_name')
+        fields = ('email', 'phone_number', 'full_name')
 
     def clean_password2(self):
         cd = self.cleaned_data
