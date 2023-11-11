@@ -3,7 +3,7 @@ import random
 from django.contrib import messages
 
 from django.views import View
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, VerifyCodeForm
 from cor.utils import send_top_code
 from .models import OtpCode
 
@@ -34,3 +34,16 @@ class UserRegisterView(View):
             # if success sent code => new page
             return redirect('accounts:verify_code')
         return redirect('home:home')
+
+
+class UserRegisterVerifyCode(View):
+    form_class = VerifyCodeForm
+
+    def get(self, request):
+        form = self.form_class
+        return render(request, 'accounts/verify.html', {'form': form})
+
+    def post(self, request):
+        user_session = request.session['user_register_info']
+        code_instance = OtpCode.objects.get(phone_number=user_session['phone_number'])
+        form = self.form_class(request.POST)
