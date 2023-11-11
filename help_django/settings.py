@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'help_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'help_django',
+        'NAME': 'backoffice',
         'USER': 'postgres',
         'PASSWORD': 'rest',
         'HOST': "localhost",
