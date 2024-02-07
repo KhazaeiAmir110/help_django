@@ -23,7 +23,7 @@ class UserRegisterView(View):
             OtpCode.objects.create(phone_number=form.cleaned_data['phone'], code=random_code)
             request.session['user_register_info'] = {
                 'phone_number': form.cleaned_data['phone'],
-                'email ': form.cleaned_data['email'],
+                'email': form.cleaned_data['email'],
                 'full_name': form.cleaned_data['full_name'],
                 'password': form.cleaned_data['password'],
             }
@@ -47,8 +47,8 @@ class UserRegisterVerifyCode(View):
             cd = form.cleaned_data
             if code_instance.code == cd['code']:
                 User.object.create_user(user_session['phone_number'],
-                                        user_session['full_name'],
                                         user_session['email'],
+                                        user_session['full_name'],
                                         user_session['password'])
                 code_instance.delete()
                 messages.success(request, 'you registered.', 'success')
