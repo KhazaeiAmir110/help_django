@@ -7,4 +7,16 @@
 
 {% block content %}
     <h3>Hello user</h3>
+    <br><br><br>
+    {% for product in products %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ product.image.url }}" class="card-img-top"
+                 alt="{{ product.short_description }}">
+            <div class="card-body">
+                <a href="{{ product.get_absolute_url }}" class="card-title">{{ product.name }}</a>
+                <p class="card-text">{{ product.description }}</p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
