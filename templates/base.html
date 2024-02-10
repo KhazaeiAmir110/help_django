@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +10,8 @@
           rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
-    <style>
-        .jumbotron {
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #e9ecef;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}">
+    {% block extra_deaders %} {% endblock %}
 </head>
 <body>
 
