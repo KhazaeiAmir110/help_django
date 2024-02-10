@@ -63,6 +63,28 @@ class UserRegisterVerifyCode(View):
         return redirect('home:home')
 
 
+# Login
+class UserLoginView(View):
+    form_class = UserLoginForm
+    template_name = 'accounts/login.html'
+
+    def get(self, request):
+        form = self.form_class
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, phone_number=cd['phone'], password=cd['password'])
+            if user:
+                login(request, user)
+                messages.success(request, 'you logged in successfully!!', 'info')
+                return redirect('home:home')
+            messages.error(request, 'This is code wrong!!!', 'danger')
+        return render(request, self.template_name, {'form': form})
+
+
 # Logout
 class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
