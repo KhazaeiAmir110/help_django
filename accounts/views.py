@@ -3,7 +3,10 @@ import random
 from django.contrib import messages
 
 from django.views import View
-from .forms import UserRegisterForm, VerifyCodeForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .forms import UserRegisterForm, VerifyCodeForm, UserLoginForm
 from cor.utils import send_otp_code
 from .models import OtpCode, User
 
@@ -57,4 +60,12 @@ class UserRegisterVerifyCode(View):
             else:
                 messages.error(request, 'This is code wrong!!!', 'danger')
                 return redirect('accounts:verify_code')
+        return redirect('home:home')
+
+
+# Logout
+class UserLogoutView(LoginRequiredMixin, View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'you logged out success!!', 'success')
         return redirect('home:home')
