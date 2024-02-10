@@ -3,6 +3,9 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='scategory',
+                                     null=True, blank=True)
+    is_subb = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
 
@@ -17,7 +20,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    category = models.ManyToManyField(Category, related_name='products')
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d/')
