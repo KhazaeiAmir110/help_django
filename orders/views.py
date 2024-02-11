@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from cor.cart import Cart
 from products.models import Product
-from .forms import CartAddForm
+from .forms import CartAddForm, CouponForm
 from .models import Order, OrderItem
 
 
@@ -39,9 +39,11 @@ class CartRemoveView(View):
 
 # Orders Detail
 class OrderDetailView(LoginRequiredMixin, View):
+    form = CouponForm()
+
     def get(self, request, order_id):
         order = get_object_or_404(Order, id=order_id)
-        return render(request, 'orders/order_detail.html', {'order': order})
+        return render(request, 'orders/order_detail.html', {'order': order, 'form': self.form})
 
 
 # Order Create
