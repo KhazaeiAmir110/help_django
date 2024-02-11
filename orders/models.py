@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from products.models import Product
+from cor.validator import validate_even
 
 
 class Order(models.Model):
@@ -9,6 +11,7 @@ class Order(models.Model):
     paid = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    discount = models.IntegerField(blank=True, null=True, default=None)
 
     class Meta:
         ordering = ('paid', '-updated')
@@ -31,3 +34,17 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
+# Coupon
+class Coupon(models.Model):
+    code = models.CharField(max_length=30, unique=True)
+    valid_form = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    discount = models.IntegerField(
+        validators=[MinValueValidator(0, 'min coupon'), MaxValueValidator(70, 'max coupon'),
+                    validate_even(10)])
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.code
