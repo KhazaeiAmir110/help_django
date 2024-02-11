@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+import datetime
 
 from django.views import View
 from cor.cart import Cart
 from products.models import Product
 from .forms import CartAddForm, CouponForm
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Coupon
 
 
 class CartView(View):
@@ -74,3 +76,24 @@ class OrderPayView(LoginRequiredMixin, View):
 class OrderVerifyView(LoginRequiredMixin, View):
     def get(self, request):
         pass
+
+
+# Apply
+class CouponApplyView(LoginRequiredMixin, View):
+    form_class = CouponForm
+
+    def post(self, request, order_id):
+        now = datetime.datetime.now()
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            try:
+                coupon = Coupon.objects.get(code__exact=code, valid_form__lte=now,
+                                            valid_to__gte=now, active=True)
+            except Coupon.DoesNotExist:
+                messages.error(request, 'this coupon does not exists', 'danger')
+                return redirect('orders:order_detail', order_id)
+            order = Order.objects.get(id=order_id)
+            order.discount = coupon.discount
+            order.save()
+        return redirect('orders:order_detail', order_id)
