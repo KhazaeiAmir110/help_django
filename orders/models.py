@@ -23,7 +23,7 @@ class Order(models.Model):
         total = sum(item.get_cost() for item in self.items.all())
         if self.discount:
             discount_price = (self.discount / 100) * total
-            total = - discount_price
+            return int(total - discount_price)
         return total
 
 
