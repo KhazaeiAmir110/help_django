@@ -42,8 +42,7 @@ class Coupon(models.Model):
     valid_form = models.DateTimeField()
     valid_to = models.DateTimeField()
     discount = models.IntegerField(
-        validators=[MinValueValidator(0, 'min coupon'), MaxValueValidator(70, 'max coupon'),
-                    validate_even(10)])
+        validators=[MinValueValidator(0, 'min coupon'), MaxValueValidator(70, 'max coupon')])
     active = models.BooleanField(default=False)
 
     def __str__(self):
