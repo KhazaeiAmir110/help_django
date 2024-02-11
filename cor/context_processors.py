@@ -1,4 +1,4 @@
-from orders.cart import Cart
+from cor.cart import Cart
 
 
 def cart(request):

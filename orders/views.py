@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.views import View
-from .cart import Cart
+from cor.cart import Cart
 from products.models import Product
 from .forms import CartAddForm
 
