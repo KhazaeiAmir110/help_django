@@ -55,3 +55,20 @@ class OrderCreateView(LoginRequiredMixin, View):
                                      quantity=item['quantity'])
         cart.clear()
         return redirect('orders:order_detail', order.id)
+
+
+"""
+    :Pay
+"""
+
+
+# Zarin pal
+class OrderPayView(LoginRequiredMixin, View):
+    def get(self, request, order_id):
+        pass
+
+
+# Verify
+class OrderVerifyView(LoginRequiredMixin, View):
+    def get(self, request):
+        pass
