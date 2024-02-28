@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h2>{{ company.name }}</h2>
                 <p class="card-text">{{ company.address }}</p>
-                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Reservation</a>
+                <a href="{% url 'home:work_time' company.slug %}" class="btn btn-primary">Reservation</a>
             </div>
         </div>
     {% endfor %}
