@@ -29,7 +29,7 @@
         {% for date in work_dates %}
             <tr>
                 <th scope="row">{{ date.id }}</th>
-                <td><a href="#">{{ date.date.day }}</a></td>
+                <td><a href="{% url 'home:work_hours' company.slug date.date %}">{{ date.date.day }}</a></td>
                 <td>{{ date.date.month }}</td>
                 <td>{{ date.date.year }}</td>
                 <td>{{ date.company }}</td>

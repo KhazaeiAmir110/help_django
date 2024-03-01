@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from .models import Company, Category, WorkDate
+from .models import Company, Category, WorkDate, WorkTime
 
 
 class HomeView(View):
@@ -21,3 +21,11 @@ class WorkDateView(View):
         company = Company.objects.get(slug=company_slug)
         work_dates = WorkDate.objects.filter(company=company)
         return render(request, 'reserve/work_time.html', {'work_dates': work_dates, 'company': company})
+
+
+# Page 3
+class WorkTimeView(View):
+    def get(self, request, company_slug, date):
+        work_date = WorkDate.objects.get(company__slug=company_slug, date=date)
+        work_time = WorkTime.objects.filter(work_date=work_date)
+        return render(request, 'reserve/work_hours.html', {'work_time': work_time})
