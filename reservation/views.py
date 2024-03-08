@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from datetime import date, timedelta
 
 from .models import Company, Category, WorkDate, WorkTime
 
@@ -18,8 +19,11 @@ class HomeView(View):
 
 class WorkDateView(View):
     def get(self, request, company_slug):
+        start_time = date.today()
+        end_time = start_time + timedelta(days=30)
+
         company = Company.objects.get(slug=company_slug)
-        work_dates = WorkDate.objects.filter(company=company)
+        work_dates = WorkDate.objects.filter(company=company, date__range=[start_time, end_time])
         return render(request, 'reserve/work_time.html', {'work_dates': work_dates, 'company': company})
 
 
