@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'LR/fonts/material-icon/css/material-design-iconic-font.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'LR/css/style.css' %}">
+</head>
+<body>
+
+<div class="main">
+    {% block main %}
+
+    {% endblock %}
+
+    <!-- JS -->
+    <script src="{% static 'LR/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'LR/js/jquery.min.js' %}"></script>
+</body>
+</html>
