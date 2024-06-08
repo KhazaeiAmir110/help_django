@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 
@@ -18,3 +18,9 @@ class UserLoginView(LoginView):
             return redirect('home')
         else:
             return redirect('login')
+
+
+class UserLogoutView(LogoutView):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('login')
