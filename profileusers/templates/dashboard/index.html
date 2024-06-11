@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block name-user %}
+    {{ user.first_name }}
+{% endblock %}
+
+{% block main %}
+    hellow
+    {{ user.name }}
+    {{ user.username }}
+{% endblock %}
