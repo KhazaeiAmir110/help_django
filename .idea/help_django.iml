@@ -29,6 +29,7 @@
       <list>
         <option value="$MODULE_DIR$/home/templates" />
         <option value="$MODULE_DIR$/users/templates" />
+        <option value="$MODULE_DIR$/profileusers/templates" />
       </list>
     </option>
   </component>
