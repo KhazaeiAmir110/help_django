@@ -1,26 +1,38 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 
 from users.models import User
 from home.models import Post, Category, File
 
 
-class ProfileUserView(LoginRequiredMixin, TemplateView):
-    template_name = 'dashboard/index.html'
+class ProfileUserView(LoginRequiredMixin):
 
-    def get_context_data(self, **kwargs):
+    def __init__(self):
+        self.request = None
+
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        user = self.request.user
 
-        if self.request.user.is_superuser:
-            context['users'] = User.objects.all()
-            context['posts'] = Post.objects.all()
-            context['categories'] = Category.objects.all()
-            context['files'] = File.objects.all()
+        if user.is_superuser:
+            context = {
+                'user': user,
+                'users': User.objects.all(),
+                'posts': Post.objects.all(),
+                'categories': Category.objects.all(),
+                'files': File.objects.all()
+            }
+        elif user.is_active:
+            context = {
+                'user': user,
+                'post': Post.objects.filter(user=self.request.user)
+            }
         else:
-            context['post'] = Post.objects.filter(user=self.request.user)
-            # context['form'] = DemandForm()
+            context = {
+                'error': 'You are not authorized to access this!!!'
+            }
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -31,3 +43,7 @@ class ProfileUserView(LoginRequiredMixin, TemplateView):
             demand.user = request.user
             demand.save()
         return self.get(request, *args, **kwargs)
+
+
+class HomeProfileView(ProfileUserView, TemplateView):
+    template_name = 'dashboard/index.html'
