@@ -17,7 +17,7 @@ class UserLoginView(LoginView):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('home-profile')
         else:
             return redirect('login')
 
@@ -51,7 +51,7 @@ class UserRegisterView(View):
                 return redirect('register')
 
             User.objects.create_user(username=username, email=email, password=password)
-            return redirect('home')
+            return redirect('login')
         else:
             template_name = 'LR/register.html'
             return render(request, template_name)
