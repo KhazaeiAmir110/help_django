@@ -9,6 +9,10 @@
 <ul>
     {% for lis in list %}
         <li><a href="{% url 'detail' lis.id %}">{{ lis.title }}</a></li>
+        <form action="{% url 'delete_list' lis.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
     {% endfor %}
 </ul>
 

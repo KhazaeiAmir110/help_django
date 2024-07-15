@@ -42,3 +42,17 @@ def list_detail(request, id):
         'form': form
     }
     return render(request, 'detail.html', context)
+
+
+def delete_list(request, id):
+    selected_list = TodoList.objects.get(id=id)
+    if request.method == 'POST':
+        selected_list.delete()
+        return redirect('todo-list')
+
+
+def delete_item(request, id):
+    selected_list = TodoItem.objects.get(id=id)
+    if request.method == 'POST':
+        selected_list.delete()
+        return redirect('detail')
