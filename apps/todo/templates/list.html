@@ -17,7 +17,7 @@
     {% endfor %}
 </ul>
 
-<form action="" method="post">
+<form action="" method="post" id="form">
     {% csrf_token %}
     <input name="title" id="id_title">
     <button type="submit" id="list-create-btn">Submit</button>
@@ -32,9 +32,9 @@
     const listCreateBtn = document.getElementById('list-create-btn')
     listCreateBtn.addEventListener('click', function (e) {
         e.preventDefault()
-        let fd = new FormData();
-        fd.append('title', document.getElementById('id_title').value)
-        fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+        let fd = new FormData(document.getElementById("form"), document.getElementById("list-create-btn"));
+        {#fd.append('title', document.getElementById('id_title').value)#}
+        {#fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')#}
         axios.post('/a/send/', fd)
             .then(res => {
                 console.log(res.data.status)
