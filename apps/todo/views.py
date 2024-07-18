@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from .models import TodoList, TodoItem
 from .forms import TodoListForm, TodoItemForm
@@ -10,6 +11,10 @@ def lists(request):
     form = TodoListForm()
     todo_list = TodoList.objects.filter(user=request.user)
 
+    return render(request, 'list.html', {'list': todo_list, 'form': form})
+
+
+def send(request):
     if request.method == 'POST':
         form = TodoListForm(request.POST)
         if form.is_valid():
@@ -17,8 +22,7 @@ def lists(request):
             new_list = TodoList(title=title, user=request.user)
             new_list.save()
             form = TodoListForm()
-
-    return render(request, 'list.html', {'list': todo_list, 'form': form})
+            return JsonResponse({'status': 'OK', 'title': request.POST['title']})
 
 
 @login_required

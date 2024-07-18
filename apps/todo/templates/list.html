@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +19,30 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    <input name="title" id="id_title">
+    <button type="submit" id="list-create-btn">Submit</button>
 </form>
+
+{# js #}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+        integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const listCreateBtn = document.getElementById('list-create-btn')
+    listCreateBtn.addEventListener('click', function (e) {
+        e.preventDefault()
+        let fd = new FormData();
+        fd.append('title', document.getElementById('id_title').value)
+        fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+        axios.post('/send/', fd)
+            .then(res => {
+                console.log(res.data.status)
+                console.log(res.data.title)
+            }).catch(err => {
+            console.log(err)
+        })
+    })
+</script>
 </body>
 </html>
