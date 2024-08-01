@@ -35,13 +35,16 @@
         let fd = new FormData(document.getElementById("form"), document.getElementById("list-create-btn"));
         {#fd.append('title', document.getElementById('id_title').value)#}
         {#fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')#}
-        axios.post('/a/send/', fd)
-            .then(res => {
+        axios.post('/a/send/', fd).then(
+            res => {
                 console.log(res.data.status)
                 console.log(res.data.title)
-            }).catch(err => {
-            console.log(err)
-        })
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
     })
 </script>
 </body>
