@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Package App
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'help_django.wsgi.application'
+ASGI_APPLICATION = 'help_django.asgi.application'
 
 
 # Database
@@ -79,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'help_django',
         'USER': 'postgres',
-        'PASSWORD': 'rest',
+        'PASSWORD': 'postgres',
         'HOST': "localhost",
         'PORT': '5432',
     }
