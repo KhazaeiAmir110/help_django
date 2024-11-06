@@ -6,5 +6,12 @@
 </head>
 <body>
 <h2>Water</h2>
+
+<script type="text/javascript">
+    const socket = new WebSocket('ws://' + window.location.host + '/waiting')
+    socket.onmessage = function (e) {
+        console.log(e)
+    }
+</script>
 </body>
 </html>
