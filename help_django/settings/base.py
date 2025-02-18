@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rabbit.apps.RabbitConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,3 +100,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# RabbitMQ
+
+import pika
+from .local import *
+
+
+def check_rabbitmq_connection():
+    try:
+        credentials = pika.PlainCredentials(username=RABBITMQ_USER, password=RABBITMQ_PASS)
+        parameters = pika.ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT, credentials=credentials)
+
+        connection = pika.BlockingConnection(parameters)
+        print("connection successful")
+
+        connection.close()
+    except Exception as e:
+        print("connection failed, error:", e)

@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rabbit.views import test_rabbitmq_connection
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('rabbitmq/', test_rabbitmq_connection),
 ]
