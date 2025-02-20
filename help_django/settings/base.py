@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     "django_redis",
     "django_celery_beat",
 
-    "first_celery",
+    "first_celery.apps.FirstCeleryConfig",
+    "home.apps.HomeConfig",
 ]
 
 MIDDLEWARE = [
