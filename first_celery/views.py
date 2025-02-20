@@ -11,7 +11,7 @@ def my_task():
     open('test.txt', 'w').close()
 
 
-def home(request):
+def firstCelery(request):
     print(my_task)
     my_task.delay()
     return HttpResponse('hello')
