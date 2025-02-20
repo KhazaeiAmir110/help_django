@@ -1,8 +1,9 @@
-import time
 
 from django.http import HttpResponse
 
+from home.tasks import task_hellow
+
 
 def home(request):
-    time.sleep(10)
+    task_hellow.apply_async()
     return HttpResponse("Hello, world. You're at the polls home view.")
