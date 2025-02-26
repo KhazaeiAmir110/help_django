@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Detail</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'css/main-single.css' %}"/>
+</head>
+<body dir="rtl" class="single is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="links">
+            <ul>
+                <li><a href="#">خانه</a></li>
+                <li><a href="#">پروفایل</a></li>
+                <li><a href="#">ورود</a></li>
+                <li><a href="#">ثبت نام</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main -->
+    <div id="main">
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="#">{{ post.title }}</a></h2>
+                    <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2015-11-01">November 1, 2015</time>
+                    <a href="#" class="author"><span class="name">Jane Doe</span><img
+                            src="images/avatar.jpg" alt=""/></a>
+                </div>
+            </header>
+            <span class="image featured"><img src="{{ post.picture.url }}" alt=""/></span>
+            <p>{{ post.description }}</p>
+            <footer>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li><a href="#" class="icon solid fa-heart">28</a></li>
+                    <li><a href="#" class="icon solid fa-comment">128</a></li>
+                </ul>
+            </footer>
+        </article>
+
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'js/js-single/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/js-single/browser.min.js' %}"></script>
+<script src="{% static 'js/js-single/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/js-single/util.js' %}"></script>
+<script src="{% static 'js/js-single/main.js' %}"></script>
+
+</body>
+</html>
