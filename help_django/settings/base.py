@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'help_django.wsgi.application'
+ASGI_APPLICATION = 'help_django.asgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
